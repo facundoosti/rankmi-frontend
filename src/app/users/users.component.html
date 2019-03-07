@@ -1,0 +1,28 @@
+<table cdk-table [dataSource]="dataSource">
+  <!-- User name Definition -->
+  <ng-container cdkColumnDef="nombre">
+    <th cdk-header-cell *cdkHeaderCellDef> User name </th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.nombre}} </td>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <ng-container cdkColumnDef="cargo">
+    <th cdk-header-cell *cdkHeaderCellDef> Age </th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.cargo}} </td>
+  </ng-container>
+
+  <!-- Title Definition -->
+  <ng-container cdkColumnDef="area">
+    <th cdk-header-cell *cdkHeaderCellDef> Title </th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.area}} </td>
+  </ng-container>
+
+    <ng-container cdkColumnDef="mundo">
+    <th cdk-header-cell *cdkHeaderCellDef> Title </th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.mundo}} </td>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <tr cdk-header-row *cdkHeaderRowDef="['nombre', 'cargo', 'area', 'mundo']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['nombre', 'cargo', 'area', 'mundo']"></tr>
+</table>
