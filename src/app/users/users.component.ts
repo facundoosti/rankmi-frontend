@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkTableModule} from '@angular/cdk/table';
-
 
 export interface User {
   nombre: string;
@@ -19,6 +17,7 @@ const USERS: User[] = [
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  displayedColumns: string[] = ['nombre', 'cargo', 'area', 'mundo'];
   dataSource = USERS;
 
   constructor() { }
