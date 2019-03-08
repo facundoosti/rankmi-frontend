@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User, UserAdapter } from '../models/user.model';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +20,6 @@ export class UserService {
   ) {}
 
   getUsers(): Observable<User[]> {
-    return this.http.get(`${this.apiURL}/users`).pipe(
-      map((data: any[]) => data.map(item => this.adapter.adapt(item))),
-    );
-  }
- }
+    return this.http.get<User[]>(`${this.apiURL}/users` )
+    }
+}
