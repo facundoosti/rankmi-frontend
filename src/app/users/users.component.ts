@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
-export interface User {
-  nombre: string;
-  area: string;
-  mundo: string;
-  cargo: string;
-}
+//export interface User {
+//nombre: string;
+//area: string;
+//mundo: string;
+//cargo: string;
+//}
 
-const USERS: User[] = [
- { nombre: 'pepe', area: 'pepe' ,mundo: 'pepe' ,cargo: 'pepe' }
-];
+//const USERS: User[] = [
+// { nombre: 'pepe', area: 'pepe' ,mundo: 'pepe' ,cargo: 'pepe' }
+//];
 
 @Component({
   selector: 'app-users',
@@ -18,11 +20,18 @@ const USERS: User[] = [
 })
 export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'cargo', 'area', 'mundo'];
-  dataSource = USERS;
+  dataSource: User[] = [];
 
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe(
+      (response) => {
+          this.dataSource = response;
+      }
+    );
   }
 
 }
