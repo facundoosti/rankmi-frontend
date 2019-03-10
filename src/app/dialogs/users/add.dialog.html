@@ -1,0 +1,40 @@
+<div class="container">
+  <h3 mat-dialog-title>Agregar Colaborador</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Nombre" [(ngModel)]="user.nombre" name="nombre" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Cargo" [(ngModel)]="user.cargo" name="cargo" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Area" [(ngModel)]="user.area" name="area" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+     <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Mundo" [(ngModel)]="user.mundo" name="mundo" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="closeClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

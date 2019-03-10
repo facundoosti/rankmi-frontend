@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { AddDialogComponent } from '../dialogs/users/add.dialog';
 import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -9,29 +12,37 @@ import { User } from '../models/user.model';
 })
 export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'familia', 'details'];
-  dataSource: User[];
+  dataSource: Observable<User[]>;
+  filterValue: string = '';
 
   constructor(
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.filterUsers();
+    this.filterValue = localStorage.getItem('filter');
+    this.filterUsers(this.filterValue);
   }
 
   filter(value: string) {
+    localStorage.setItem('filter', value);
     this.filterUsers(value);
   }
 
   filterUsers(value?: string) {
-    this.userService.getUsers(value).subscribe(
-      (response) => {
-        this.dataSource = response;
-      }
-    );
+    this.dataSource = this.userService.getUsers(value);
   }
 
-  redirectToDetails(id: string) {
+  addNew(user: User) {
+    const dialogRef = this.dialog.open(AddDialogComponent, {
+      data: { user }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.filterUsers();
+      }
+    });
   }
 }

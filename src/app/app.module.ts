@@ -8,17 +8,24 @@ import { MatButtonModule,
          MatTableModule,
          MatInputModule,
          MatFormFieldModule,
-         MatIconModule } from '@angular/material';
+         MatIconModule,
+         MatCardModule,
+         MatDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { AddDialogComponent } from './dialogs/users/add.dialog';
 import { UsersComponent } from './users/users.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    AddDialogComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -28,11 +35,18 @@ import { AppRoutingModule } from './app-routing.module';
     MatTableModule,
     MatInputModule,
     MatIconModule,
+    MatCardModule,
     HttpClientModule,
     MatFormFieldModule,
-    AppRoutingModule
+    MatDialogModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
+  entryComponents: [
+    AddDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

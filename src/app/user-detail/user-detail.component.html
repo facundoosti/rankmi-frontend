@@ -1,0 +1,25 @@
+<mat-card class="user-card">
+  <mat-card-header>
+    <div mat-card-avatar class="user-header-image"></div>
+    <mat-card-title>Colaborador: {{user.nombre}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Cargo: {{user.cargo}}
+    </p>
+    <p>
+      Mundo: {{user.mundo}}
+    </p>
+    <p>
+      Area: {{user.area}}
+    </p>
+    <div *ngIf="user.family_goal">
+      <p>
+        Familia: {{user.family_goal.familia}}
+      </p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="goBack()">Volver</button>
+  </mat-card-actions>
+</mat-card>
