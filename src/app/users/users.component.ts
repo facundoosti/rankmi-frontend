@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['nombre', 'cargo', 'area', 'mundo'];
+  displayedColumns: string[] = ['nombre', 'familia', 'details'];
   dataSource: User[];
 
   constructor(
@@ -16,10 +16,22 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(
+    this.filterUsers();
+  }
+
+  filter(value: string) {
+    this.filterUsers(value);
+  }
+
+  filterUsers(value?: string) {
+    this.userService.getUsers(value).subscribe(
       (response) => {
         this.dataSource = response;
       }
     );
+  }
+
+  redirectToDetails(id: string) {
+
   }
 }

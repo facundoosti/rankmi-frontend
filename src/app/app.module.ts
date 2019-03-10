@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule }    from '@angular/common/http';
-import { MatButtonModule, MatCheckboxModule, MatTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatButtonModule,
+         MatCheckboxModule,
+         MatTableModule,
+         MatInputModule,
+         MatFormFieldModule,
+         MatIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -20,7 +26,11 @@ import { UsersComponent } from './users/users.component';
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    HttpClientModule
+    MatInputModule,
+    MatIconModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

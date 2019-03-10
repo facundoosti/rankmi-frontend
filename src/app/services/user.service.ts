@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User, UserAdapter } from '../models/user.model';
+import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -15,11 +15,15 @@ export class UserService {
   private apiURL: string = 'http://localhost:3000';
 
   constructor(
-    private http: HttpClient,
-    private adapter: UserAdapter,
+    private http: HttpClient
   ) {}
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiURL}/users` )
+  getUsers(query?: string): Observable<User[]> {
+    const url = 'http://localhost:3000/users';
+    let params = {};
+    if (query) {
+      params = { params: { query: query } };
     }
+    return this.http.get<User[]>(url, params);
+  }
 }

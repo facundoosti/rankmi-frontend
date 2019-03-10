@@ -1,8 +1,4 @@
-import { Injectable } from '@angular/core';
-
-export interface Adapter<T> {
-    adapt(item: any): T;
-}
+import { FamilyGoal } from './family_goal.model';
 
 export class User {
   constructor(
@@ -11,21 +7,6 @@ export class User {
     public cargo: string,
     public area: string,
     public mundo: string,
+    public family_goal: FamilyGoal,
   ) { }
-}
-
-@Injectable({
-    providedIn: 'root'
-})
-export class UserAdapter implements Adapter<User> {
-
-  adapt(item: any): User {
-    return new User(
-        item.id,
-        item.nombre,
-        item.cargo,
-        item.area,
-        item.mundo,
-    );
-  }
 }
