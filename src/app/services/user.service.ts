@@ -7,13 +7,13 @@ import { map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const baseUrl = 'http://localhost:3000/users';
 
 @Injectable({
 
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl = 'http://localhost:3000/users';
 
   constructor(
     private http: HttpClient
@@ -24,10 +24,14 @@ export class UserService {
     if (query) {
       params = { params: { query: query } };
     }
-    return this.http.get<User[]>(baseUrl, params);
+    return this.http.get<User[]>(this.baseUrl, params);
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(baseUrl, user, httpOptions);
+    return this.http.post<User>(this.baseUrl, user, httpOptions);
   }
 }
